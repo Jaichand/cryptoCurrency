@@ -1,7 +1,5 @@
 var app = angular.module('chartCurrency', ['chart.js']);
 app.controller("chartController", function ($scope, $http, $interval) {
-  $scope.labels = [];
-  $scope.data = [];
   $scope.noDataFound = true;
   //to fecth data from API
   var fetchCurrency = function () {
@@ -11,6 +9,8 @@ app.controller("chartController", function ($scope, $http, $interval) {
         $scope.noDataFound = true;
         return
       }
+      $scope.labels = [];
+      $scope.data = [];
       $scope.noDataFound = false;
       $scope.cryptoCurrency = data;
       data.forEach(function (value) {
