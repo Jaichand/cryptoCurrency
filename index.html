@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="chartCurrency">
+  <head>
+    <meta charset="utf-8">
+    <title>Chart For Crypto Currency</title>
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+  <body ng-controller="chartController">
+    <div class="container">
+      <div class="col-md-12 center-align">
+        <h1>Simple Chart App for Crypto Currency</h1>
+      </div>
+      <div class="col-md-12 center-align" ng-if="noDataFound">
+        <span>No Data found for Crypto Currency</span>
+      </div>
+      <div class="col-md-12" ng-if="!noDataFound">
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>MaketCap</th>
+            <th>Price</th>
+            <th>Volume (24h)</th>
+            <th>Circulating Supply</th>
+          </tr>
+          <tr ng-repeat="crypto in cryptoCurrency">
+            <td>{{crypto.name}}</td>
+            <td>${{crypto.market_cap_usd}}</td>
+            <td>${{crypto.price_usd}}</td>
+            <td>${{crypto['24h_volume_usd']}}</td>
+            <td>{{crypto.available_supply}} {{crypto.symbol}}</td>
+          </tr>
+        </table>
+      </div>
+      <hr>
+      <br>
+      <div class="col-md-12" ng-if="!noDataFound">
+        <canvas id="bar" class="chart chart-bar"
+          chart-data="data" chart-labels="labels">
+        </canvas>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+  <script type="text/javascript" src="./js/app.js"></script>
+  <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+</html>
